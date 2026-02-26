@@ -6,7 +6,7 @@ import "./MasterAdmin.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/admin">
       <App />
     </Router>
   </React.StrictMode>,
