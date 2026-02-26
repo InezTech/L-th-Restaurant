@@ -1,0 +1,18 @@
+{
+    "name": "lethe-enterprise-suite",
+    "version": "1.0.0",
+    "description": "Premium LÉTHÉ Restaurant Management and Customer Suite",
+    "scripts": {
+        "install:all": "npm install && cd backend && npm install && cd ../admin-panel && npm install --legacy-peer-deps && cd ../customer-site && npm install",
+        "dev:backend": "cd backend && npm run start:dev",
+        "dev:admin": "cd admin-panel && npm start",
+        "dev:customer": "cd customer-site && npm run dev",
+        "dev": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\"",
+        "serve:portal": "npx serve . -p 8080",
+        "demo": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\" \"npm run serve:portal\"",
+        "build": "cd backend && npm run build && cd ../admin-panel && npm run build && cd ../customer-site && npm run build"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

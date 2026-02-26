@@ -1,0 +1,124 @@
+.reservation-page {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)), url('https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2670&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.reservation-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .reservation-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+}
+
+.reservation-info {
+    color: #fff;
+}
+
+.reservation-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .feature-item {
+        justify-content: center;
+    }
+}
+
+.reservation-glass {
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.time-slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.slot-pill {
+    padding: 0.75rem 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.slot-pill:hover {
+    border-color: var(--accent-gold);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.slot-pill.active {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 600;
+}
+
+.custom-date {
+    position: relative;
+}
+
+/* Fix for date picker icon color */
+.custom-date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.w-100 {
+    width: 100%;
+}

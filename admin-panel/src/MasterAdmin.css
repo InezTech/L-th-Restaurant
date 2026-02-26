@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --admin-bg: #050505;
+    --admin-card-bg: #101012;
+    --admin-accent: #c5a059;
+    --admin-text: #ffffff;
+    --admin-text-muted: #a0a0a0;
+    --admin-border: rgba(255, 255, 255, 0.1);
+    --success: #34c759;
+}
+
+body {
+    background-color: var(--admin-bg) !important;
+    color: var(--admin-text) !important;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Override Bootstrap Navbar */
+.navbar {
+    background-color: #000 !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+    padding: 1rem 2rem !important;
+}
+
+.navbar-brand img {
+    filter: brightness(0) invert(1);
+    height: 30px;
+}
+
+/* Layout */
+.container,
+.container-lg {
+    max-width: 1400px !important;
+    margin-top: 2rem !important;
+}
+
+/* Cards & Sections */
+.card,
+.jumbotron,
+.dashboard-container {
+    background-color: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    padding: 1.5rem !important;
+    color: var(--admin-text) !important;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+    padding: 0.6rem 1.2rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-primary {
+    background-color: var(--admin-accent) !important;
+    border-color: var(--admin-accent) !important;
+    color: #000 !important;
+}
+
+.btn-primary:hover {
+    background-color: #d4b474 !important;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: transparent !important;
+    border: 1px solid var(--admin-border) !important;
+    color: #ffffff !important;
+}
+
+.btn-danger {
+    background-color: rgba(255, 59, 48, 0.1) !important;
+    border: 1px solid rgba(255, 59, 48, 0.3) !important;
+    color: #ff3b30 !important;
+}
+
+/* Tables */
+.table {
+    color: #ffffff !important;
+    border-color: var(--admin-border) !important;
+}
+
+.table thead th {
+    border-bottom: 1px solid var(--admin-border) !important;
+    color: var(--admin-text-muted) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+.table td {
+    padding: 1.2rem 0.75rem !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+    color: #ffffff !important;
+}
+
+/* Alerts */
+.alert {
+    background-color: rgba(220, 38, 38, 0.1) !important;
+    border: 1px solid rgba(220, 38, 38, 0.2) !important;
+    color: #fca5a5 !important;
+    border-radius: 8px !important;
+}
+
+.alert-danger {
+    background: rgba(255, 59, 48, 0.1) !important;
+    color: #ff3b30 !important;
+    border: 1px solid rgba(255, 59, 48, 0.2) !important;
+}
+
+/* Dashboard Specific List Styling */
+.list-group-item {
+    background-color: transparent !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+    padding: 1rem 0 !important;
+}
+
+/* Status Badges */
+.badge {
+    padding: 0.4em 0.8em !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+}
+
+/* Custom Cockpit Elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-5 {
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    color: #ffffff !important;
+}
+
+.text-muted {
+    color: var(--admin-text-muted) !important;
+}
+
+/* Search Bar */
+.form-control {
+    background-color: #1a1a1c !important;
+    border: 1px solid var(--admin-border) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+}
+
+.form-control:focus {
+    border-color: var(--admin-accent) !important;
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2) !important;
+}

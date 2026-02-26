@@ -1,0 +1,131 @@
+.menu-page {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.menu-hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 1) 100%),
+        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2670&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.menu-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-bottom: 12rem;
+    align-items: center;
+}
+
+.menu-row.inverse {
+    direction: rtl;
+}
+
+.menu-row.inverse .menu-content-col {
+    direction: ltr;
+    text-align: right;
+}
+
+.menu-row.inverse .menu-item-header {
+    flex-direction: row-reverse;
+}
+
+.menu-content-col {
+    padding: 2rem;
+}
+
+.section-title-large {
+    font-size: 3.5rem;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 1rem 0 3rem;
+    color: #fff;
+}
+
+.menu-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+}
+
+.menu-item-pic {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.menu-img-wrapper:hover .menu-item-pic {
+    transform: scale(1.1);
+}
+
+.menu-items-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.menu-item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+}
+
+.menu-item-header h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.line-spacer {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-gold) 0%, transparent 100%);
+    opacity: 0.3;
+}
+
+.menu-row.inverse .line-spacer {
+    background: linear-gradient(-90deg, var(--accent-gold) 0%, transparent 100%);
+}
+
+.price {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    font-weight: 300;
+}
+
+.item-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.pb-10 {
+    padding-bottom: 10rem;
+}
+
+@media (max-width: 992px) {
+    .menu-row {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 6rem;
+    }
+
+    .menu-row.inverse {
+        direction: ltr;
+    }
+
+    .menu-row.inverse .menu-content-col {
+        text-align: left;
+    }
+}

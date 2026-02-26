@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #002966;
+}
+
+.navbar-brand img {
+  height: 48px;
+}
+
+button.btn.btn-light {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: var(--header-blue);
+}
+
+button.btn.btn-light:hover {
+  background-color: #cdd3dd;
+  border: 2px solid #cdd3dd;
+  color: #1f2329;
+}

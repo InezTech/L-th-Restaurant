@@ -1,0 +1,175 @@
+.home section {
+    overflow: hidden;
+}
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.parallax-bg {
+    width: 100%;
+    height: 130%;
+    /* extra height for scroll parallax */
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(5, 5, 5, 0.85) 0%, rgba(5, 5, 5, 0.4) 40%, rgba(5, 5, 5, 1) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+    display: block;
+}
+
+.hero-desc {
+    max-width: 550px;
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.philosophy {
+    display: flex;
+    align-items: center;
+}
+
+.align-center {
+    align-items: center;
+    gap: 6rem;
+}
+
+.philosophy-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.desc-text {
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+.awards {
+    margin-top: 2rem;
+}
+
+.award-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.philosophy-image .image-wrapper {
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.philosophy-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4/5;
+    filter: brightness(0.85) contrast(1.1);
+    will-change: transform;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.philosophy-image .image-wrapper:hover img {
+    transform: scale(1.1);
+}
+
+.ingredients-showcase {
+    position: relative;
+    min-height: 600px;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; is buggy on mobile, let's keep it simple fixed */
+    background-attachment: fixed;
+    z-index: 0;
+}
+
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.7);
+    z-index: 1;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    .hero-cta {
+        flex-direction: column;
+    }
+}
