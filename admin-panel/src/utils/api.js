@@ -8,28 +8,79 @@ import formatReservationTime from "./format-reservation-date";
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
-/**
- * Defines the default headers for these functions to work with `json-server`
- */
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
 
-/**
- * Fetch `json` from the specified URL and handle error status codes and ignore `AbortError`s
- *
- * This function is NOT exported because it is not needed outside of this file.
- *
- * @param url
- *  the url for the requst.
- * @param options
- *  any options for fetch
- * @param onCancel
- *  value to return if fetch call is aborted. Default value is undefined.
- * @returns {Promise<Error|any>}
- *  a promise that resolves to the `json` data or an error.
- *  If the response is not in the 200 - 399 range the promise is rejected.
- */
+// --- Mock Backend Logic for Demo Showcase ---
+const isDemoMode = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
+const getMockData = (key) => JSON.parse(localStorage.getItem(key)) || [];
+const setMockData = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+
+// Seed initial tables if missing
+if (isDemoMode && getMockData('LETHE_TABLES').length === 0) {
+  setMockData('LETHE_TABLES', [
+    { table_id: 1, table_name: "Bar #1", capacity: 2, reservation_id: null },
+    { table_id: 2, table_name: "Bar #2", capacity: 2, reservation_id: null },
+    { table_id: 3, table_name: "#1", capacity: 4, reservation_id: null },
+    { table_id: 4, table_name: "#2", capacity: 4, reservation_id: null },
+  ]);
+}
+
 async function fetchJson(url, options, onCancel) {
+  if (isDemoMode) {
+    const urlObj = new URL(url);
+    const path = urlObj.pathname;
+    const method = options?.method || 'GET';
+
+    // Intercept Reservations
+    if (path.includes('/reservations')) {
+      let reservations = getMockData('LETHE_RESERVATIONS');
+
+      if (method === 'GET') {
+        const mobile = urlObj.searchParams.get('mobile_number');
+        if (mobile) return reservations.filter(r => r.mobile_number.includes(mobile));
+        return reservations;
+      }
+
+      if (method === 'POST') {
+        const newRes = { ...JSON.parse(options.body).data, reservation_id: Date.now(), status: 'booked' };
+        reservations.push(newRes);
+        setMockData('LETHE_RESERVATIONS', reservations);
+        return newRes;
+      }
+
+      if (method === 'PUT') {
+        const resId = parseInt(path.split('/').pop()) || path.split('/').pop();
+        const updateData = JSON.parse(options.body).data;
+        reservations = reservations.map(r => r.reservation_id == resId ? { ...r, ...updateData } : r);
+        setMockData('LETHE_RESERVATIONS', reservations);
+        return updateData;
+      }
+    }
+
+    // Intercept Tables
+    if (path.includes('/tables')) {
+      let tables = getMockData('LETHE_TABLES');
+      if (method === 'GET') return tables;
+
+      if (path.endsWith('/seat')) {
+        const tableId = path.split('/')[path.split('/').length - 2];
+        const resId = method === 'DELETE' ? null : JSON.parse(options.body).data.reservation_id;
+        tables = tables.map(t => t.table_id == tableId ? { ...t, reservation_id: resId } : t);
+        setMockData('LETHE_TABLES', tables);
+
+        // Update reservation status too
+        if (resId) {
+          let reservations = getMockData('LETHE_RESERVATIONS');
+          reservations = reservations.map(r => r.reservation_id == resId ? { ...r, status: 'seated' } : r);
+          setMockData('LETHE_RESERVATIONS', reservations);
+        }
+        return { status: 200 };
+      }
+    }
+  }
+
   try {
     const response = await fetch(url, options);
 

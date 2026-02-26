@@ -10,7 +10,9 @@
         "dev": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\"",
         "serve:portal": "npx serve . -p 8080",
         "demo": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\" \"npm run serve:portal\"",
-        "build": "cd backend && npm run build && cd ../admin-panel && npm run build && cd ../customer-site && npm run build"
+        "build": "npm run build:subprojects && npm run build:bundle",
+        "build:subprojects": "cd admin-panel && npm run build && cd ../customer-site && npm run build",
+        "build:bundle": "rm -rf dist-prod && mkdir -p dist-prod/guest dist-prod/admin && cp index.html dist-prod/ && cp -r customer-site/dist/* dist-prod/guest/ && cp -r admin-panel/build/* dist-prod/admin/"
     },
     "devDependencies": {
         "concurrently": "^8.2.2"

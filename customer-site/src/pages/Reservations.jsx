@@ -31,6 +31,8 @@ const Reservations = () => {
         setStatus('loading');
         setErrorMsg('');
 
+        const isDemoMode = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
         try {
             const payload = {
                 data: {
@@ -38,6 +40,19 @@ const Reservations = () => {
                     people: Number(formData.people)
                 }
             };
+
+            if (isDemoMode) {
+                // Intercept and save to local storage for demo
+                const reservations = JSON.parse(localStorage.getItem('LETHE_RESERVATIONS')) || [];
+                const newRes = { ...payload.data, reservation_id: Date.now(), status: 'booked' };
+                reservations.push(newRes);
+                localStorage.setItem('LETHE_RESERVATIONS', JSON.stringify(reservations));
+
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 800));
+                setStatus('success');
+                return;
+            }
 
             const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
             const response = await fetch(`${API_URL}/reservations`, {

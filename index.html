@@ -167,6 +167,23 @@
             pointer-events: none;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const guestLink = document.getElementById('guest-link');
+            const managerLink = document.getElementById('manager-link');
+
+            if (isLocal) {
+                // In development, point to the dev server ports
+                guestLink.href = 'http://localhost:5173';
+                managerLink.href = 'http://localhost:3000';
+            } else {
+                // In production, use relative paths to the bundled subfolders
+                guestLink.href = './guest/';
+                managerLink.href = './admin/';
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -177,7 +194,7 @@
     </div>
 
     <!-- Customer Side -->
-    <a href="http://localhost:5173" class="split left">
+    <a id="guest-link" href="./guest/" class="split left">
         <div class="bg-layer"></div>
         <div class="content">
             <span class="tag">The Sanctuary</span>
@@ -187,7 +204,7 @@
     </a>
 
     <!-- Admin Side -->
-    <a href="http://localhost:3000" class="split right">
+    <a id="manager-link" href="./admin/" class="split right">
         <div class="bg-layer"></div>
         <div class="content">
             <span class="tag">The Cockpit</span>
