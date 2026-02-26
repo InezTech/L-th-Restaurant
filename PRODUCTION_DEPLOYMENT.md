@@ -1,57 +1,50 @@
-# AUSZEIT | Enterprise Deployment & Demo Guide
+# LÉTHÉ | Technical Deployment Reference
 
-This document outlines the final architecture and usage for the **AUSZEIT Restaurant Suite**. The system is now fully decoupled, secured, and ready for client presentation.
+This document outlines the final technical architecture and production hardening steps applied to the **LÉTHÉ Enterprise Suite**.
 
-## 🚀 System Architecture
-The suite consists of three interconnected modules:
+---
+
+## 🏗️ Technical Architecture
+
+The suite consists of three interconnected modules orchestrated via a root portal:
+
 1.  **Backend API (`/backend`)**: Node.js/Express server with SQLite persistence.
-2.  **Customer Site (`/customer-site`)**: Vite/React frontend with luxury GSAP animations.
-3.  **Manager Cockpit (`/admin-panel`)**: Production-grade dashboard for operational management.
+2.  **Customer Site (`/customer-site`)**: Vite/React frontend with luxury GSAP animations and immersive UI.
+3.  **Manager Cockpit (`/admin-panel`)**: Production-grade React dashboard for surgical operational control.
+4.  **Showcase Portal (Root)**: A cinematic landing page for selecting guest or management views.
 
 ---
 
-## 🛠️ How to Launch the Demo
-To show the client both views simultaneously, follow these steps:
+## 🔒 Production Hardening & Security
 
-1.  **Start the Backend**:
-    *   `cd backend && npm install && npm run start`
-    *   The API will be live on `http://localhost:5001`.
+The following measures have been implemented to ensure the suite is "Production-Ready" before deployment:
 
-2.  **Start the Customer Site**:
-    *   `cd customer-site && npm install && npm run dev`
-    *   The site will be live on `http://localhost:5173`.
+### 1. Hardened CORS Strategy
+The backend (`/backend/src/app.js`) is configured with a dynamic CORS policy.
+- **Local Dev:** Automatically trusts `localhost` variants for zero-friction demoing.
+- **Production:** Prepared for `FRONTEND_URL` and `ADMIN_URL` environment variables to support cross-domain communication on services like Netlify and Render.
 
-3.  **Start the Manager Cockpit**:
-    *   `cd admin-panel && npm install --legacy-peer-deps && npm start`
-    *   The dashboard will be live on `http://localhost:3000`.
+### 2. Environment Portability
+- **Dynamic Endpoints:** The frontends use `.env` files and `process.env` to reference the API, allowing for instant migration from local to cloud servers.
+- **SQLite Persistence:** The database is portable and requires zero external infrastructure (like AWS RDS or PostgreSQL) for initial demos.
 
----
-
-## 💎 The "Perfect" Demo Flow
-Open the **Showcase Portal** at: `file:///Users/omrawte/Documents/ausz/index.html`
-
-### Phase 1: The Guest Experience
-1.  Navigate to the **Customer Site**.
-2.  Showcase the **Smooth Scroll (Lenis)** and **Parallax Hero**.
-3.  Go to the **Gastronomy Gallery (Menu)** and show the luxury hover effects.
-4.  Make a **live reservation** for a future date (e.g., Tomorrow). Select a specific time slot (e.g., 18:30).
-5.  Observe the 120-minute duration disclosure.
-
-### Phase 2: Operations Management
-1.  Navigate to the **Manager Cockpit**.
-2.  Observe the **Live Stats Bar** (Capacity & Occupancy).
-3.  Click **"Next"** to find the reservation you just made.
-4.  Highlight the **Exp. End Time** (e.g., 20:30) which manages the table duration automatically.
-5.  Click **"Seat"** to simulate the guest's arrival.
-6.  Once finished, click **"Clear Table"** to reset occupancy.
+### 3. Unified Branding & UX
+- **Identity:** All references to the previous project name have been replaced with **LÉTHÉ**.
+- **Performance:** Optimized GSAP triggers and smooth scroll (Lenis) across the guest-facing application.
 
 ---
 
-## 🔒 Production Hardening Applied
-- **CORS Restricted**: API only accepts requests from specific vetted origins.
-- **Environment Driven**: API endpoints are managed via `.env` files for easy server migration.
-- **Persistence**: Switched to SQLite for a portable, single-file database that requires ZERO external infrastructure for this demo.
-- **UX Consistency**: Standardized typography (Outfit & Inter) across both professional interfaces.
+## 🚀 Deployment Instructions
+
+### Frontend (Netlify/Vercel)
+1.  Run `npm run build` in both `/customer-site` and `/admin-panel`.
+2.  Deploy the root folder and configure your hosting provider to serve the static `dist/` and `build/` folders as subdirectories if needed.
+
+### Backend (Render/Railway/Heroku)
+1.  Deploy the `/backend` folder.
+2.  Set the `PORT` and `NODE_ENV` environment variables.
+3.  The SQLite database will persist locally or can be migrated to a persistent volume.
 
 ---
-**Status: READY FOR SHIPPING**
+
+**Status: DEPLOYMENT READY**
