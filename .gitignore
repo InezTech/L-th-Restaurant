@@ -48,3 +48,4 @@ customer-site/dist/
 backend/node_modules/
 admin-panel/node_modules/
 customer-site/node_modules/
+dist-prod/
