@@ -9,7 +9,7 @@
     "directory": "/front-end"
   },
   "private": true,
-  "homepage": ".",
+  "homepage": "/admin/",
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.4.1",
     "@testing-library/jest-dom": "^5.11.9",

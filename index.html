@@ -178,9 +178,9 @@
                 guestLink.href = 'http://localhost:5173';
                 managerLink.href = 'http://localhost:3000';
             } else {
-                // In production, use relative paths to the bundled subfolders
-                guestLink.href = './guest/';
-                managerLink.href = './admin/';
+                // In production, use absolute paths to the bundled subfolders
+                guestLink.href = '/guest/';
+                managerLink.href = '/admin/';
             }
         });
     </script>
@@ -194,7 +194,7 @@
     </div>
 
     <!-- Customer Side -->
-    <a id="guest-link" href="./guest/" class="split left">
+    <a id="guest-link" href="/guest/" class="split left">
         <div class="bg-layer"></div>
         <div class="content">
             <span class="tag">The Sanctuary</span>
@@ -204,7 +204,7 @@
     </a>
 
     <!-- Admin Side -->
-    <a id="manager-link" href="./admin/" class="split right">
+    <a id="manager-link" href="/admin/" class="split right">
         <div class="bg-layer"></div>
         <div class="content">
             <span class="tag">The Cockpit</span>
