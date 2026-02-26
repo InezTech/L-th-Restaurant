@@ -1,17 +1,23 @@
 {
     "name": "lethe-enterprise-suite",
     "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "admin-panel",
+        "customer-site",
+        "backend"
+    ],
     "description": "Premium LÉTHÉ Restaurant Management and Customer Suite",
     "scripts": {
-        "install:all": "npm install && cd backend && npm install && cd ../admin-panel && npm install --legacy-peer-deps && cd ../customer-site && npm install",
-        "dev:backend": "cd backend && npm run start:dev",
-        "dev:admin": "cd admin-panel && npm start",
-        "dev:customer": "cd customer-site && npm run dev",
+        "install:all": "npm install",
+        "dev:backend": "npm run start:dev -w backend",
+        "dev:admin": "npm run start -w admin-panel",
+        "dev:customer": "npm run dev -w customer-site",
         "dev": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\"",
         "serve:portal": "npx serve . -p 8080",
         "demo": "npx concurrently \"npm run dev:backend\" \"npm run dev:admin\" \"npm run dev:customer\" \"npm run serve:portal\"",
-        "build": "CI=false npm run build:subprojects && npm run build:bundle",
-        "build:subprojects": "cd admin-panel && npm run build && cd ../customer-site && npm run build",
+        "build": "npm run build:subprojects && npm run build:bundle",
+        "build:subprojects": "cd admin-panel && npm install --legacy-peer-deps && npm run build && cd ../customer-site && npm install && npm run build",
         "build:bundle": "rm -rf dist-prod && mkdir -p dist-prod/guest dist-prod/admin && cp index.html dist-prod/ && cp -r customer-site/dist/* dist-prod/guest/ && cp -r admin-panel/build/* dist-prod/admin/"
     },
     "devDependencies": {
